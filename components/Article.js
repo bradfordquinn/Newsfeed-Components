@@ -86,6 +86,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'The New Article',
+    date: 'Dec 10th, 2020',
+    firstParagraph: `This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. `,
+    secondParagraph:  `This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. `,
+    thirdParagraph:  `This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. This is a sentence. `
   }
 ];
 
@@ -114,3 +121,61 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articles = document.querySelector(".articles");
+
+function articleMaker(obj){
+
+  const article = document.createElement("div");
+  const titl = document.createElement('h2');
+  const dat = document.createElement('p');
+  const text1 = document.createElement('p');
+  const text2 = document.createElement('p');
+  const text3 = document.createElement('p');
+  const span = document.createElement('span');
+
+  article.appendChild(titl);
+  article.appendChild(dat);
+  article.appendChild(text1);
+  article.appendChild(text2);
+  article.appendChild(text3);
+  article.appendChild(span);
+
+  article.classList.add('article');
+  dat.classList.add('date');
+  span.classList.add('expandButton');
+
+  span.addEventListener('click', event => {
+    article.classList.toggle('article-open');
+  });
+
+  // let x = 0;
+  // for (let i = 0; i < obj.length; i++) {
+  //   counter++;
+  // }
+
+  titl.textContent = obj.title;
+  dat.textContent = obj.date;
+  text1.textContent = obj.firstParagraph;
+  text2.textContent = obj.secondParagraph;
+  text3.textContent = obj.thirdParagraph;
+  span.textContent = '+';
+  return article;
+
+}
+
+const newsfeedData = data.map((data) => {
+  return articleMaker(data);
+});
+
+newsfeedData.forEach((ele) => {
+  articles.appendChild(ele);
+});
+
+// const panelElements = panelData.map((panelData) => {
+//   return makePanel(panelData);
+// });
+
+// panelElements.forEach((panelElement) => {
+//   accordion.appendChild(panelElement);
+// });
